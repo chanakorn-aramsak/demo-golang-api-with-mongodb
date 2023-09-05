@@ -1,0 +1,103 @@
+definitions:
+  models.Book:
+    properties:
+      author:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/books:
+    get:
+      description: Get all book data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Book'
+            type: array
+      summary: Get all books
+    post:
+      consumes:
+      - application/json
+      description: Add a new book
+      parameters:
+      - description: Book info
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ok
+          schema:
+            type: string
+      summary: Add a new book
+  /api/books/{id}:
+    delete:
+      description: Delete a book by ID
+      parameters:
+      - description: ID of the book to delete
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Delete a book
+    get:
+      description: Get a single book
+      parameters:
+      - description: ID of the book to get
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Get a book by ID
+    put:
+      consumes:
+      - application/json
+      description: Update an existing book by ID
+      parameters:
+      - description: ID of the book to update
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Book info
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/models.Book'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Update an existing book
+swagger: "2.0"

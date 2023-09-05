@@ -1,0 +1,159 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/api/books": {
+            "get": {
+                "description": "Get all book data",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all books",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Book"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a new book",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Add a new book",
+                "parameters": [
+                    {
+                        "description": "Book info",
+                        "name": "book",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "ok",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/books/{id}": {
+            "get": {
+                "description": "Get a single book",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a book by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of the book to get",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update an existing book by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update an existing book",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of the book to update",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Book info",
+                        "name": "book",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a book by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Delete a book",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID of the book to delete",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Book": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
